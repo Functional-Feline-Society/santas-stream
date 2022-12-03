@@ -7,16 +7,17 @@ import munit.CatsEffectSuite
 
 class SantasListSpec extends CatsEffectSuite {
 
+  private[this] val response: IO[Response[IO]] = {
+    val getHW = Request[IO](Method.GET, uri"/list/houseOfCats/bones")
+    SantasRoutes.listRoutes.orNotFound(getHW)
+  }
+
   test("GET route for a gift recipient returns OK") {
-    assertIO(retStatus.map(_.status), Status.Ok)
+    assertIO(response.map(_.status), Status.Ok)
   }
 
   test("GET route for a gift recipient returns 'Nice'") {
-    assertIO(retStatus.flatMap(_.as[String]), "Nice")
+    assertIO(response.flatMap(_.as[String]), "Nice")
   }
 
-  private[this] val retStatus: IO[Response[IO]] = {
-    val getHW = Request[IO](Method.GET, uri"/list/court/elias")
-    SantasRoutes.listRoutes.orNotFound(getHW)
-  }
 }

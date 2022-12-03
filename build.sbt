@@ -20,8 +20,5 @@ lazy val root = (project in file("."))
       "org.typelevel" %% "munit-cats-effect-3" % MunitCatsEffectVersion % Test,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
-    addCompilerPlugin(
-      "org.typelevel" %% "kind-projector" % "0.13.2" cross CrossVersion.full
-    ),
     testFrameworks += new TestFramework("munit.Framework")
   )
