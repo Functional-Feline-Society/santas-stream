@@ -1,0 +1,41 @@
+# Scala stuff
+*.class
+*.log
+*project/target
+*target
+
+# IDE
+*.idea
+
+#MacOS
+.DS_Store
+
+# sbt specific
+sbt
+.sbt-local
+.cache
+.history
+.lib
+dist
+target
+lib_managed
+src_managed
+.ensime
+.ensime_cache
+coursier.sbt
+credentials.sbt
+
+# IDE specific
+.idea
+*.iml
+
+
+.bsp
+
+.metals/
+.vscode/
+.bloop/
+metals.sbt
+
+
+.sdkmanrc
