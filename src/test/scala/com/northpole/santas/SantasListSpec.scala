@@ -9,11 +9,11 @@ import munit.CatsEffectSuite
 class SantasListSpec extends CatsEffectSuite {
 
   test("should return naughty or nice") {
-    assertIO(retStatus.map(_.status) ,Status.Ok)
+    assertIO(retStatus.map(_.status), Status.Ok)
   }
 
   test("HelloWorld returns hello world message") {
-    assertIO(retStatus.flatMap(_.as[String]), "Nice")
+    assertIO(retStatus.flatMap(_.as[String]), "Noce")
   }
 
   private[this] val retStatus: IO[Response[IO]] = {
