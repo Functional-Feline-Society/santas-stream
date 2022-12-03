@@ -10,8 +10,8 @@ object SantasRoutes {
 
   @nowarn
   def listRoutes: HttpRoutes[IO] = {
-    HttpRoutes.of[IO]{
-      case GET -> Root /"list"/ household / name => Ok("Nice")
+    HttpRoutes.of[IO] { case GET -> Root / "list" / household / name =>
+      Ok("Nice")
     }
   }
 }

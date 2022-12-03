@@ -5,14 +5,13 @@ import org.http4s._
 import org.http4s.implicits._
 import munit.CatsEffectSuite
 
-// www.santas.com/list/:household/:name
 class SantasListSpec extends CatsEffectSuite {
 
-  test("should return naughty or nice") {
-    assertIO(retStatus.map(_.status) ,Status.Ok)
+  test("GET route for a gift recipient returns OK") {
+    assertIO(retStatus.map(_.status), Status.Ok)
   }
 
-  test("HelloWorld returns hello world message") {
+  test("GET route for a gift recipient returns 'Nice'") {
     assertIO(retStatus.flatMap(_.as[String]), "Nice")
   }
 
