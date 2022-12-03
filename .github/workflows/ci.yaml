@@ -9,4 +9,4 @@ jobs:
       - uses: coursier/cache-action@v6
       - uses: coursier/setup-action@v1
       - name: Run tests
-        run: sbtn test
+        run: sbtn -v test
