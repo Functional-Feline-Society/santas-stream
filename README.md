@@ -2,6 +2,8 @@
 By Bones, Dog and Megachu.
 
 <img height=150px src="https://user-images.githubusercontent.com/3103/207422703-66e0f264-f8e2-4ae2-91d4-6bd0f3cc20be.png" alt="Megachu">
+<img height=150px src="https://raw.githubusercontent.com/K1nd/k1nd.github.io/gh-pages/assets/images/Bones.jpg" alt="Bones">
+<img height=150px src="https://raw.githubusercontent.com/K1nd/k1nd.github.io/gh-pages/assets/images/Dog.jpg" alt="Dog">
 
 # Introduction
 
