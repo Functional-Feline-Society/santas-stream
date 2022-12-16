@@ -2,17 +2,14 @@
 
 
 <table >
-<tbody>
-  <tr>
-    <td ><img height=150px src="https://user-images.githubusercontent.com/3103/207422703-66e0f264-f8e2-4ae2-91d4-6bd0f3cc20be.png" alt="Megachu"> <br/>Megachu</td>
-    <td ><img height=150px src="https://raw.githubusercontent.com/K1nd/k1nd.github.io/gh-pages/assets/images/Bones.jpg" alt="Bones"><br/ >Bones</td>
-    <td ><img height=150px src="https://raw.githubusercontent.com/K1nd/k1nd.github.io/gh-pages/assets/images/Dog.jpg" alt="Dog"><br/> Dog</td>
-  </tr>
-</tbody>
+    <tbody>
+      <tr>
+        <td ><img height=150px src="https://user-images.githubusercontent.com/3103/207422703-66e0f264-f8e2-4ae2-91d4-6bd0f3cc20be.png" alt="Megachu"> <br/>Megachu</td>
+        <td ><img height=150px src="https://raw.githubusercontent.com/K1nd/k1nd.github.io/gh-pages/assets/images/Bones.jpg" alt="Bones"><br/ >Bones</td>
+        <td ><img height=150px src="https://raw.githubusercontent.com/K1nd/k1nd.github.io/gh-pages/assets/images/Dog.jpg" alt="Dog"><br/> Dog</td>
+      </tr>
+    </tbody>
 </table>
-
-
-
 
 # Introduction
 
@@ -24,14 +21,20 @@ Unbeknownst to most, Santa's systems are actually supported by cats (the ones th
 This series of posts is a report on our experience building and running Santa's Ledger, a well known, reliable system of gifting.
 One component of this report is a toy version of the real system designed for didactic purposes. This toy repo has representative examples of:
 
-      * Using [IO](https://typelevel.org/cats-effect/docs/2.x/datatypes/io) rather than a finally tagless approach because we thought it might be easier to read for people not used to more functional approaches. Feedback on this most welcome    
+      * Using [IO](https://typelevel.org/cats-effect/docs/2.x/datatypes/io) rather than a finally tagless approach because we thought it might be easier to read for people not used to more functional approaches. Feedback on this most welcome  
+          * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/Main.scala)
       * Consuming messages off of [Kafka](https://kafka.apache.org)
+          * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/AddressUpdateConsumer.scala)
       * Serializing and deserializing messages using serdes defined with [Vulcan](https://fd4s.github.io/vulcan/)
+          * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/domain.scala)
       * Maintaining concurrency-safe state using [Ref](https://typelevel.org/cats-effect/docs/std/ref) from the [cats-effect](https://typelevel.org/cats-effect/) standard lib
-      * Routing using [HTTP4s](https://http4s.org)        
+          * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/SantasLedger.scala)
+      * Routing using [HTTP4s](https://http4s.org)       
+          * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/SantasRoutes.scala) 
       * Writing tests using [munit](https://scalameta.org/munit/)
+          * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/test/scala/com/northpole/santas/SantasListSpec.scala)
       * Using docker containers for integration test dependencies with [test-containers](https://github.com/testcontainers/testcontainers-scala)
-
+          * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/it/scala/com/northpole/santas/NaughtyNiceReportSpec.scala)
 
 To keep the toy project simple and to the point, there are a series of decisions and assumptions we have made. Please see #Decisions & Assumptions for details.
 

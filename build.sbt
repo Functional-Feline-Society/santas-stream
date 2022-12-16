@@ -1,5 +1,5 @@
 val CatsVersion            = "2.9.0"
-val CatsEffectVersion      = CatsEffectVersion
+val CatsEffectVersion      = "3.4.2"
 val Http4sVersion          = "0.23.16"
 val CirceVersion           = "0.14.3"
 val MunitVersion           = "0.7.29"
