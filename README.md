@@ -13,7 +13,7 @@
 
 # Introduction
 
-This is the first post in a series walking through an example of a microservice with a Kafka integration using the Typelevel stack. We have chosen to showcase a simplified version of Santa's Ledger.  
+This is the first post in a series walking through an example of a microservice with a Kafka integration using the Typelevel stack. We have chosen to showcase a simplified version of Santa's Ledger.  If you want to see the repo now, [click here](https://github.com/Functional-Feline-Society/santas-stream/).
 Unbeknownst to most, Santa's systems are actually supported by cats (the ones that go meow). The work here was kindly translated into English by our keepers.
 
 ## Summary
