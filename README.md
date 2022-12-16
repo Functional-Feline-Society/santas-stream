@@ -1,7 +1,7 @@
 # Case study: The digital transformation of Santa's logistical nightmare
 By Bones, Dog and Megachu.
 
-</style>
+
 <table >
 <tbody>
   <tr>
