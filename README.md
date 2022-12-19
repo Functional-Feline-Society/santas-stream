@@ -25,7 +25,7 @@ One component of this report is a toy version of the real system designed for di
       * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/Main.scala)
   * Consuming messages off of [Kafka](https://kafka.apache.org)
       * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/AddressUpdateConsumer.scala)
-  * Serializing and deserializing messages using serdes defined with [Vulcan](https://fd4s.github.io/vulcan/)
+  * Serializing and deserializing messages using codecs defined with [Vulcan](https://fd4s.github.io/vulcan/)
       * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/domain.scala)
   * Maintaining concurrency-safe state using [Ref](https://typelevel.org/cats-effect/docs/std/ref) from the [cats-effect](https://typelevel.org/cats-effect/) standard lib
       * [Click here for an example](https://github.com/Functional-Feline-Society/santas-stream/blob/eaa88e5809f1690625add84de9b7efdca68897f4/src/main/scala/com/northpole/santas/SantasLedger.scala)
