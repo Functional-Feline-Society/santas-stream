@@ -43,7 +43,7 @@ lazy val root = (project in file("."))
       "org.scalameta" %% "munit"                          % MunitVersion           % "it,test",
       "org.typelevel" %% "munit-cats-effect-3"            % MunitCatsEffectVersion % "it,test",
       "com.dimafeng"  %% "testcontainers-scala-scalatest" % TestContainersVersion  % IntegrationTest,
-      "com.dim`afeng" %% "testcontainers-scala-kafka"     % TestContainersVersion  % IntegrationTest,
+      "com.dimafeng"  %% "testcontainers-scala-kafka"     % TestContainersVersion  % IntegrationTest,
       "com.dimafeng"  %% "testcontainers-scala-munit"     % TestContainersVersion  % IntegrationTest,
       // Misc
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
