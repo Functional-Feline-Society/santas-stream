@@ -55,7 +55,6 @@ class SantasListSpec extends CatsEffectSuite {
   }
 
   private[this] val householdResponse: IO[Response[IO]] = {
-    // NOTE: Encoding this way for test purposes but really, we can't tell you about how we encode chimneys
     val address          = URLEncoder.encode(TestAddress.get.address, "UTF-8")
     val uri              = Uri.unsafeFromString(s"/house/${address}")
     val householdRequest = Request[IO](Method.GET, uri)
