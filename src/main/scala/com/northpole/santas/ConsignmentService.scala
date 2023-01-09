@@ -9,7 +9,7 @@ trait ConsignmentService {
 
 object ConsignmentService {
   def apply(
-      addressBook: SantasAddressBook,
+      addressBook: SantasAddressBookService,
       ledger: SantasLedger
   ): ConsignmentService = new ConsignmentService {
     override def getConsignment(fullName: FullName): IO[ChristmasConsignment] =

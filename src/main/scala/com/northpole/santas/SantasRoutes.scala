@@ -7,11 +7,13 @@ import org.http4s.dsl.io._
 
 object SantasRoutes {
 
-  def ledger(consignmentService: ConsignmentService): HttpRoutes[IO] = {
-    HttpRoutes.of[IO] { case GET -> Root / "list" / lastName / firstName =>
-      Ok(
-        consignmentService.getConsignment(FullName(firstName, lastName))
-      )
+  def ledger(addressBookService: SantasAddressBookService, consignmentService: ConsignmentService): HttpRoutes[IO] =
+    HttpRoutes.of[IO] {
+      case GET -> Root / "list" / lastName / firstName =>
+        Ok(
+          consignmentService.getConsignment(FullName(firstName, lastName))
+        )
+      case GET -> Root / "house" / address => Ok(addressBookService.getHouseholdList(Address(address)))
+
     }
-  }
 }
