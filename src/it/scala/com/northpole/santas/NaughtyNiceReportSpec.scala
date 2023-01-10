@@ -18,6 +18,7 @@ import org.http4s.implicits.http4sLiteralsSyntax
 import org.testcontainers.containers.Network
 import org.testcontainers.containers.wait.strategy.Wait
 
+import java.net.URLEncoder
 import scala.concurrent.duration.{DurationInt, FiniteDuration}
 
 class NaughtyNiceReportSpec extends CatsEffectSuite with TestContainersForEach {
@@ -114,9 +115,10 @@ class NaughtyNiceReportSpec extends CatsEffectSuite with TestContainersForEach {
               )
               .flatten
 // Assert
+            megachusHouseInhabitants <- eventually(getHouseInhabitants(server.baseUri, MegachusAddress))
             _ <- eventually(
               assertIO(
-                getConsignment(server.baseUri, MegachusFullName),
+                getConsignment(server.baseUri, megachusHouseInhabitants.head),
                 ChristmasConsignment(
                   MegachusFullName,
                   MegachusAddress.some,
@@ -138,6 +140,20 @@ class NaughtyNiceReportSpec extends CatsEffectSuite with TestContainersForEach {
         baseUri.withPath(
           Path.unsafeFromString(
             s"/list/${fullName.lastName}/${fullName.firstName}"
+          )
+        )
+      )
+    }
+
+  private def getHouseInhabitants(
+      baseUri: Uri,
+      address: Address
+  ): IO[List[FullName]] =
+    EmberClientBuilder.default[IO].build.use { client =>
+      client.expect[List[FullName]](
+        baseUri.withPath(
+          Path.unsafeFromString(
+            s"/house/${URLEncoder.encode(address.address, "UTF-8")}"
           )
         )
       )

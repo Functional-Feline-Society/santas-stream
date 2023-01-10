@@ -3,13 +3,7 @@ package com.northpole.santas
 import cats.effect.IO
 import cats.effect.kernel.Resource
 import com.northpole.santas.AddressUpdateConsumer.AddressUpdateReportTopic
-import fs2.kafka.{
-  AutoOffsetReset,
-  ConsumerSettings,
-  KafkaConsumer,
-  RecordDeserializer,
-  commitBatchWithin
-}
+import fs2.kafka.{AutoOffsetReset, ConsumerSettings, KafkaConsumer, RecordDeserializer, commitBatchWithin}
 import fs2.kafka.vulcan.avroDeserializer
 
 import scala.concurrent.duration.DurationInt
@@ -19,8 +13,7 @@ case class AddressUpdateConsumer(config: KafkaConfig) {
   implicit private val fullNameDeserializer: RecordDeserializer[IO, FullName] =
     avroDeserializer[FullName].using(config.avroSettings)
 
-  implicit private val addressUpdateDeserializer
-      : RecordDeserializer[IO, Address] =
+  implicit private val addressUpdateDeserializer: RecordDeserializer[IO, Address] =
     avroDeserializer[Address].using(config.avroSettings)
 
   private val addressUpdateConsumerSettings =
@@ -39,9 +32,7 @@ case class AddressUpdateConsumer(config: KafkaConfig) {
       )
       .map(
         _.stream
-          .evalTap(r =>
-            processAddressUpdate(AddressUpdate(r.record.key, r.record.value))
-          )
+          .evalTap(r => processAddressUpdate(AddressUpdate(r.record.key, r.record.value)))
           .map(_.offset)
           .through(commitBatchWithin(500, 15.seconds))
       )

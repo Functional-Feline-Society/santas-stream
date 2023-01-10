@@ -7,24 +7,23 @@ import org.http4s.server.Server
 
 object SantasServer {
 
-  def resource(kafkaConfig: KafkaConfig): Resource[IO, Server] = {
+  def resource(kafkaConfig: KafkaConfig): Resource[IO, Server] =
     for {
-      _ <- Resource.eval((IO.println("Starting server...")))
-      addressBook <- Resource.eval(SantasInMemoryAddressBook.default())
-      ledger <- Resource.eval(SantasInMemoryLedger.default())
+      _                  <- Resource.eval((IO.println("Starting server...")))
+      addressBookService <- Resource.eval(SantasInMemoryAddressBook.default())
+      ledger             <- Resource.eval(SantasInMemoryLedger.default())
       reportConsumer <- BehaviourReportConsumer(kafkaConfig)
         .consumeWith(ledger.addBehaviourReport)
       addressUpdatesConsumer <- AddressUpdateConsumer(kafkaConfig)
-        .consumeWith(addressBook.updateAddress)
+        .consumeWith(addressBookService.updateAddress)
       _ <- reportConsumer
         .concurrently(addressUpdatesConsumer)
         .compile
         .drain
         .background
-      consignmentService = ConsignmentService(addressBook, ledger)
-      httpApp = (
-        SantasRoutes.ledger(consignmentService)
-      ).orNotFound
+
+      consignmentService = ConsignmentService(addressBookService, ledger)
+      httpApp            = SantasRoutes.ledger(addressBookService, consignmentService).orNotFound
 
       server <- EmberServerBuilder
         .default[IO]
@@ -33,5 +32,4 @@ object SantasServer {
         .withHttpApp(httpApp)
         .build
     } yield server
-  }
 }
