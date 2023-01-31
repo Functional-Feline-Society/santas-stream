@@ -14,8 +14,7 @@ case class BehaviourReportConsumer(config: KafkaConfig) {
   implicit val fullNameDeserializer: RecordDeserializer[IO, FullName] =
     avroDeserializer[FullName].using(config.avroSettings)
 
-  implicit val behaviourReportDeserializer
-      : RecordDeserializer[IO, BehaviourReport] =
+  implicit val behaviourReportDeserializer: RecordDeserializer[IO, BehaviourReport] =
     avroDeserializer[BehaviourReport].using(config.avroSettings)
 
   private val behaviourConsumerSettings =

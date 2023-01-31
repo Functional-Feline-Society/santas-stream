@@ -3,7 +3,7 @@ package com.northpole.santas
 import cats.effect.{IO, Resource}
 import com.comcast.ip4s._
 import org.http4s.ember.server.EmberServerBuilder
-import org.http4s.server.Server
+import org.http4s.server.{Router, Server}
 
 object SantasServer {
 
@@ -23,7 +23,11 @@ object SantasServer {
         .background
 
       consignmentService = ConsignmentService(addressBookService, ledger)
-      httpApp            = SantasRoutes.ledger(addressBookService, consignmentService).orNotFound
+      httpApp =
+        Router(
+          "/"         -> SantasRoutes.ledger(addressBookService, consignmentService),
+          "/internal" -> StatusRoutes.route
+        ).orNotFound
 
       server <- EmberServerBuilder
         .default[IO]
