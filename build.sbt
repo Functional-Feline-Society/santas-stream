@@ -40,14 +40,17 @@ lazy val root = (project in file("."))
       "com.github.fd4s" %% "fs2-kafka-vulcan" % Fs2KafkaVersion,
       "com.github.fd4s" %% "fs2-kafka"        % Fs2KafkaVersion,
       // test related
-      "org.scalameta" %% "munit"                          % MunitVersion           % "it,test",
-      "org.typelevel" %% "munit-cats-effect-3"            % MunitCatsEffectVersion % "it,test",
-      "com.dimafeng"  %% "testcontainers-scala-scalatest" % TestContainersVersion  % IntegrationTest,
-      "com.dimafeng"  %% "testcontainers-scala-kafka"     % TestContainersVersion  % IntegrationTest,
-      "com.dimafeng"  %% "testcontainers-scala-munit"     % TestContainersVersion  % IntegrationTest,
+      "org.scalameta"    %% "munit"                          % MunitVersion           % "it,test",
+      "org.typelevel"    %% "munit-cats-effect-3"            % MunitCatsEffectVersion % "it,test",
+      "com.dimafeng"     %% "testcontainers-scala-scalatest" % TestContainersVersion  % IntegrationTest,
+      "com.dimafeng"     %% "testcontainers-scala-kafka"     % TestContainersVersion  % IntegrationTest,
+      "com.dimafeng"     %% "testcontainers-scala-munit"     % TestContainersVersion  % IntegrationTest,
+      "com.github.cb372" %% "cats-retry"                     % "3.1.0"                % IntegrationTest,
       // Misc
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
     testFrameworks += new TestFramework("munit.Framework"),
-    Defaults.itSettings
+    Defaults.itSettings,
+    // Fork needed for testcontainers' Ryuk instance to get properly cleaned up
+    IntegrationTest / fork := true
   )
