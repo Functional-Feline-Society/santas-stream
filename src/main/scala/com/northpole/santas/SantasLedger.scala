@@ -38,7 +38,7 @@ object SantasInMemoryLedger {
           ledgerState.get.map(ledger =>
             ledger.get(fullName) match {
               case Some(number) if number >= borderOfGoodness =>
-                //Sorry we can't show you how we decide the present.
+                // Sorry we can't show you how we decide the present.
                 Nice(uri"nice_present", number)
               case Some(number) => Coal(uri"coal", number)
               case None         => Nice(uri"average_present", borderOfGoodness)
