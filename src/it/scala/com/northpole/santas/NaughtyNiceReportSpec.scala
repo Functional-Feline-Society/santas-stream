@@ -14,7 +14,6 @@ import munit.CatsEffectSuite
 import org.http4s.Uri
 import org.http4s.circe.CirceEntityCodec.circeEntityDecoder
 import org.http4s.client.Client
-import org.http4s.dsl.io.Path
 import org.http4s.ember.client.EmberClientBuilder
 import org.http4s.implicits.http4sLiteralsSyntax
 import org.http4s.server.Server
@@ -23,7 +22,6 @@ import retry.RetryPolicies
 import retry.RetryPolicies.limitRetries
 import retry.implicits._
 
-import java.net.URLEncoder
 import scala.concurrent.duration.DurationInt
 
 class NaughtyNiceReportSpec extends CatsEffectSuite {
@@ -105,11 +103,7 @@ class NaughtyNiceReportSpec extends CatsEffectSuite {
       fullName: FullName
   ): IO[ChristmasConsignment] =
     fixture().httpClient.expect[ChristmasConsignment](
-      baseUri.withPath(
-        Path.unsafeFromString(
-          s"/list/${fullName.lastName}/${fullName.firstName}"
-        )
-      )
+      baseUri / "list" / fullName.lastName / fullName.firstName
     )
 
   private def getHouseInhabitants(
@@ -117,11 +111,7 @@ class NaughtyNiceReportSpec extends CatsEffectSuite {
       address: Address
   ): IO[NonEmptyList[FullName]] =
     fixture().httpClient.expect[NonEmptyList[FullName]](
-      baseUri.withPath(
-        Path.unsafeFromString(
-          s"/house/${URLEncoder.encode(address.address, "UTF-8")}"
-        )
-      )
+      baseUri / "house" / address.address
     )
 
   def eventually[A](io: IO[A]): IO[A] =
